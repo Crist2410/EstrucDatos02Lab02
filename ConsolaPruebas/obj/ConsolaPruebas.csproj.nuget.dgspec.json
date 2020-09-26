@@ -1,21 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\josed\\Desktop\\EstrucDatos02Lab02\\ConsolaPruebas\\ConsolaPruebas.csproj": {}
+    "C:\\Users\\Crist\\Desktop\\EstrucDatos02Lab02\\ConsolaPruebas\\ConsolaPruebas.csproj": {}
   },
   "projects": {
-    "C:\\Users\\josed\\Desktop\\EstrucDatos02Lab02\\ConsolaPruebas\\ConsolaPruebas.csproj": {
+    "C:\\Users\\Crist\\Desktop\\EstrucDatos02Lab02\\ConsolaPruebas\\ConsolaPruebas.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\josed\\Desktop\\EstrucDatos02Lab02\\ConsolaPruebas\\ConsolaPruebas.csproj",
+        "projectUniqueName": "C:\\Users\\Crist\\Desktop\\EstrucDatos02Lab02\\ConsolaPruebas\\ConsolaPruebas.csproj",
         "projectName": "ConsolaPruebas",
-        "projectPath": "C:\\Users\\josed\\Desktop\\EstrucDatos02Lab02\\ConsolaPruebas\\ConsolaPruebas.csproj",
-        "packagesPath": "C:\\Users\\josed\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\josed\\Desktop\\EstrucDatos02Lab02\\ConsolaPruebas\\obj\\",
+        "projectPath": "C:\\Users\\Crist\\Desktop\\EstrucDatos02Lab02\\ConsolaPruebas\\ConsolaPruebas.csproj",
+        "packagesPath": "C:\\Users\\Crist\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Crist\\Desktop\\EstrucDatos02Lab02\\ConsolaPruebas\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\josed\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Crist\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -52,7 +56,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

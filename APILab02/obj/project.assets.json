@@ -27,20 +27,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\josed\\.nuget\\packages\\": {}
+    "C:\\Users\\Crist\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\josed\\Desktop\\EstrucDatos02Lab02\\APILab02\\APILab02.csproj",
+      "projectUniqueName": "C:\\Users\\Crist\\Desktop\\EstrucDatos02Lab02\\APILab02\\APILab02.csproj",
       "projectName": "APILab02",
-      "projectPath": "C:\\Users\\josed\\Desktop\\EstrucDatos02Lab02\\APILab02\\APILab02.csproj",
-      "packagesPath": "C:\\Users\\josed\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\josed\\Desktop\\EstrucDatos02Lab02\\APILab02\\obj\\",
+      "projectPath": "C:\\Users\\Crist\\Desktop\\EstrucDatos02Lab02\\APILab02\\APILab02.csproj",
+      "packagesPath": "C:\\Users\\Crist\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Crist\\Desktop\\EstrucDatos02Lab02\\APILab02\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Microsoft\\Xamarin\\NuGet\\"
+      ],
       "configFilePaths": [
-        "C:\\Users\\josed\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Crist\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -52,8 +57,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\josed\\Desktop\\EstrucDatos02Lab02\\LibreriaGenericos\\LibreriaGenericos.csproj": {
-              "projectPath": "C:\\Users\\josed\\Desktop\\EstrucDatos02Lab02\\LibreriaGenericos\\LibreriaGenericos.csproj"
+            "C:\\Users\\Crist\\Desktop\\EstrucDatos02Lab02\\LibreriaGenericos\\LibreriaGenericos.csproj": {
+              "projectPath": "C:\\Users\\Crist\\Desktop\\EstrucDatos02Lab02\\LibreriaGenericos\\LibreriaGenericos.csproj"
             }
           }
         }
@@ -84,7 +89,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
       }
     }
   }
