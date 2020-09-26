@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LibreriaGenericos
 {
-    class Nodo<T>
+    class Nodo
     {
         public int Id { get; set; }
         public int Padre { get; set; }

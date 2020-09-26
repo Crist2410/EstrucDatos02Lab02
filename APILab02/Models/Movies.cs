@@ -6,9 +6,9 @@ using LibreriaGenericos;
 
 namespace APILab02.Models
 {
-    class Movies : ConvertirClase<Movies>
+    public class Movies : ConvertirClase<Movies>
     {
-        public string id { get; set; }
+        public int id { get; set; }
         public string title { get; set; }
         public string director { get; set; }
         public double imdbRating { get; set; }
@@ -20,7 +20,10 @@ namespace APILab02.Models
         {
             return M1.id.CompareTo(M2.id);
         };
-
+        public Comparison<Movies> BuscarNombre = delegate (Movies M1, Movies M2)
+        {
+            return M1.title.CompareTo(M2.title);
+        };
         public int LongitudClase()
         {
             return ClaseATexto().Length;
@@ -28,17 +31,21 @@ namespace APILab02.Models
 
         public string ClaseATexto()
         {
-            return $"{string.Format("{0,-45}", id)}|{string.Format("{0,-45}", title)}|{string.Format("{0,-45}", director)}" +
-                $"|{imdbRating.ToString("00000000000;-0000000000")}|{string.Format("{0,-45}", genre)}|" +
-                $"{string.Format("{0,-45}", releaseDate)}|{rottenTomatoesRating.ToString("00000000000; -0000000000")}";
+            //return $"{string.Format("{0,-155}", title)}^{string.Format("{0,-150}", title)}^{string.Format("{0,-45}", director)}" +
+            //    $"^{imdbRating.ToString("00000000000;-0000000000")}^{string.Format("{0,-75}", genre)}^" +
+            //    $"{string.Format("{0,-11}", releaseDate)}^{rottenTomatoesRating.ToString("00000000000; -0000000000")}";
+            return $"{id.ToString("00000000000; -0000000000")}^{string.Format("{0,-40}", title)}^{string.Format("{0,-20}", director)}" +
+               $"^{imdbRating.ToString("00000000000;-0000000000")}^{string.Format("{0,-15}", genre)}^" +
+               $"{string.Format("{0,-11}", releaseDate)}^{rottenTomatoesRating.ToString("00000000000; -0000000000")}";
         }
 
         public Movies TextoAClase(string Texto)
         {
-            string[] Separacion = Texto.Split("|");
+            string[] Separacion = Texto.Split("^");
             Movies Movi = new Movies
             {
-                id = Separacion[0],
+                id = Convert.ToInt32(Separacion[0]),
+                //id = Separacion[0],,
                 title = Separacion[1],
                 director = Separacion[2],
                 imdbRating = Convert.ToDouble(Separacion[3]),
@@ -56,10 +63,11 @@ namespace APILab02.Models
             {
                 if (Texto[i] != null && Texto[i].Trim() != "-1")
                 {
-                    string[] Separacion = Texto[i].Split("|");
+                    string[] Separacion = Texto[i].Split("^");
                     VectorPeliculas[i] = new Movies
                     {
-                        id = Separacion[0],
+                        id = Convert.ToInt32(Separacion[0]),
+                        //id = Separacion[0],,
                         title = Separacion[1],
                         director = Separacion[2],
                         imdbRating = Convert.ToDouble(Separacion[3]),
@@ -68,7 +76,8 @@ namespace APILab02.Models
                         rottenTomatoesRating = Convert.ToDouble(Separacion[6])
                     };
                 }
-
+                else
+                    VectorPeliculas[i] = null;
             }
             return VectorPeliculas;
         }
