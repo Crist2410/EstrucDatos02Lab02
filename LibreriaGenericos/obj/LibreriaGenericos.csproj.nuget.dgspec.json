@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\josed\\Desktop\\EstrucDatos02Lab02\\LibreriaGenericos\\LibreriaGenericos.csproj": {}
+    "C:\\Users\\josed\\source\\repos\\EstrucDatos02Lab02\\LibreriaGenericos\\LibreriaGenericos.csproj": {}
   },
   "projects": {
-    "C:\\Users\\josed\\Desktop\\EstrucDatos02Lab02\\LibreriaGenericos\\LibreriaGenericos.csproj": {
+    "C:\\Users\\josed\\source\\repos\\EstrucDatos02Lab02\\LibreriaGenericos\\LibreriaGenericos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\josed\\Desktop\\EstrucDatos02Lab02\\LibreriaGenericos\\LibreriaGenericos.csproj",
+        "projectUniqueName": "C:\\Users\\josed\\source\\repos\\EstrucDatos02Lab02\\LibreriaGenericos\\LibreriaGenericos.csproj",
         "projectName": "LibreriaGenericos",
-        "projectPath": "C:\\Users\\josed\\Desktop\\EstrucDatos02Lab02\\LibreriaGenericos\\LibreriaGenericos.csproj",
+        "projectPath": "C:\\Users\\josed\\source\\repos\\EstrucDatos02Lab02\\LibreriaGenericos\\LibreriaGenericos.csproj",
         "packagesPath": "C:\\Users\\josed\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\josed\\Desktop\\EstrucDatos02Lab02\\LibreriaGenericos\\obj\\",
+        "outputPath": "C:\\Users\\josed\\source\\repos\\EstrucDatos02Lab02\\LibreriaGenericos\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\josed\\AppData\\Roaming\\NuGet\\NuGet.Config",

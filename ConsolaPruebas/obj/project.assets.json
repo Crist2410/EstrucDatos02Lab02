@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\josed\\Desktop\\EstrucDatos02Lab02\\ConsolaPruebas\\ConsolaPruebas.csproj",
+      "projectUniqueName": "C:\\Users\\josed\\source\\repos\\EstrucDatos02Lab02\\ConsolaPruebas\\ConsolaPruebas.csproj",
       "projectName": "ConsolaPruebas",
-      "projectPath": "C:\\Users\\josed\\Desktop\\EstrucDatos02Lab02\\ConsolaPruebas\\ConsolaPruebas.csproj",
+      "projectPath": "C:\\Users\\josed\\source\\repos\\EstrucDatos02Lab02\\ConsolaPruebas\\ConsolaPruebas.csproj",
       "packagesPath": "C:\\Users\\josed\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\josed\\Desktop\\EstrucDatos02Lab02\\ConsolaPruebas\\obj\\",
+      "outputPath": "C:\\Users\\josed\\source\\repos\\EstrucDatos02Lab02\\ConsolaPruebas\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\josed\\AppData\\Roaming\\NuGet\\NuGet.Config",
