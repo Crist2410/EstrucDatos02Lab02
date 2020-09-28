@@ -18,7 +18,7 @@ namespace APILab02.Controllers
     {
         public static Movies AuxMovie = new Movies();
         public static string Ruta = Path.GetFullPath("Archivos\\ArchivosDisco.txt");
-        public static Arbol_B<Movies> Arbol = new Arbol_B<Movies>(4, AuxMovie.LongitudClase(), Ruta);
+        public static Arbol_B<Movies> Arbol = new Arbol_B<Movies>(5, AuxMovie.LongitudClase(), Ruta);
         // GET: api/Movies
         [HttpGet]
         public IEnumerable<string> Get()
@@ -40,6 +40,12 @@ namespace APILab02.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpDelete]
+        public IActionResult EliminarArbol()
+        {
+            Arbol = new Arbol_B<Movies>(4, AuxMovie.LongitudClase(), Ruta);
+            return Ok();
+        }
 
         // POST: api/movies/populate
         [HttpPost("populate")]
@@ -55,8 +61,7 @@ namespace APILab02.Controllers
                 {
                     foreach (Movies Peli in Response)
                     {
-                        // if (Contador <= 10)
-                        //Peli.id = Peli.title + "-" + Peli.releaseDate.Substring(7, 4);
+                        Peli.id = Peli.title + "-" + Peli.releaseDate.Substring(7, 4);
                         Arbol.Add(Peli, Peli.BuscarId);
                     }
                 });
@@ -68,17 +73,35 @@ namespace APILab02.Controllers
             }
         }
 
+        [HttpDelete("populate/{Id}")]
+        public IActionResult Borrar([FromRoute] string Id)
+        {
+            try
+            {
+               // AuxMovie.id = Convert.ToInt32(Id);
+                bool Encontrado = Arbol.Delete(AuxMovie, AuxMovie.BuscarId);
+                if (Encontrado)
+                    return Ok();
+                else
+                    return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         // GET: api/movies/{tranversal}
         [HttpGet("{tranversal}")]
-        public IEnumerable<Movies> Ordenamiento([FromRoute] string tranversal)
+        public IEnumerable<string> Ordenamiento([FromRoute] string tranversal)
         {
-            int valor = 1;
-            //if (tranversal == "inorder")
-            //    return Arbol.Orenamiento(1);
-            //else if (tranversal == "postorder")
-            //    return Arbol.Orenamiento(2);
-            //else if (tranversal == "preorder")
-            //    return Arbol.Orenamiento(3);
+            Movies Clase = new Movies();
+            if (tranversal == "inorder")
+                return Arbol.Recorrido(1, Clase);
+            else if (tranversal == "postorder")
+                return Arbol.Recorrido(2, Clase);
+            else if (tranversal == "preorder")
+                return Arbol.Recorrido(3, Clase);
             return null;
         }
 
