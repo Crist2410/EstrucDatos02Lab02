@@ -8,7 +8,7 @@ namespace APILab02.Models
 {
     public class Movies : ConvertirClase<Movies>
     {
-        public int id { get; set; }
+        public string id { get; set; }
         public string title { get; set; }
         public string director { get; set; }
         public double imdbRating { get; set; }
@@ -31,12 +31,9 @@ namespace APILab02.Models
 
         public string ClaseATexto()
         {
-            //return $"{string.Format("{0,-155}", title)}^{string.Format("{0,-150}", title)}^{string.Format("{0,-45}", director)}" +
-            //    $"^{imdbRating.ToString("00000000000;-0000000000")}^{string.Format("{0,-75}", genre)}^" +
-            //    $"{string.Format("{0,-11}", releaseDate)}^{rottenTomatoesRating.ToString("00000000000; -0000000000")}";
-            return $"{id.ToString("00000000000; -0000000000")}^{string.Format("{0,-40}", title)}^{string.Format("{0,-20}", director)}" +
-               $"^{imdbRating.ToString("00000000000;-0000000000")}^{string.Format("{0,-15}", genre)}^" +
-               $"{string.Format("{0,-11}", releaseDate)}^{rottenTomatoesRating.ToString("00000000000; -0000000000")}";
+            return $"{string.Format("{0,-155}", id)}^{string.Format("{0,-150}", title)}^{string.Format("{0,-45}", director)}" +
+                $"^{imdbRating.ToString("00000000000;-0000000000")}^{string.Format("{0,-75}", genre)}^" +
+                $"{string.Format("{0,-11}", releaseDate)}^{rottenTomatoesRating.ToString("00000000000; -0000000000")}";
         }
 
         public Movies TextoAClase(string Texto)
@@ -44,8 +41,7 @@ namespace APILab02.Models
             string[] Separacion = Texto.Split("^");
             Movies Movi = new Movies
             {
-                id = Convert.ToInt32(Separacion[0]),
-                //id = Separacion[0],,
+                id = Separacion[0],
                 title = Separacion[1],
                 director = Separacion[2],
                 imdbRating = Convert.ToDouble(Separacion[3]),
@@ -66,8 +62,7 @@ namespace APILab02.Models
                     string[] Separacion = Texto[i].Split("^");
                     VectorPeliculas[i] = new Movies
                     {
-                        id = Convert.ToInt32(Separacion[0]),
-                        //id = Separacion[0],,
+                        id = Separacion[0],
                         title = Separacion[1],
                         director = Separacion[2],
                         imdbRating = Convert.ToDouble(Separacion[3]),

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ namespace LibreriaGenericos
         int Posicion;
         Nodo NodoActual;
         Nodo NodoHermano;
+        Nodo NodoHermano2;
         Nodo NuevaRaiz;
         string[] ValoresMayores;
         string ValorVacio;
@@ -20,6 +22,7 @@ namespace LibreriaGenericos
         int[] NodoHijos;
         byte[] Datos;
         FileStream Archivo;
+        bool Encontrado;
 
         public Arbol_B(int Tamaño, int LongitudClase, string RutaDatos)
         {
@@ -175,7 +178,6 @@ namespace LibreriaGenericos
                     ValorInsertado = false;
             } while (ValorInsertado);
         }
-
         Nodo BucarNodoTXT(int IdNodo, T Valor)
         {
             Datos = new byte[NodoActual.LongitudNodo()];
@@ -253,6 +255,211 @@ namespace LibreriaGenericos
                 }
             }
             return Hijos;
+        }
+        public bool Delete(T Valor, Delegate Delegado)
+        {
+            Archivo = new FileStream(RutaArbol, FileMode.Open);
+            Encontrado = false;
+            bool Eliminado = true;
+            int HijoPosicion = Raiz;
+            do
+            {
+                NodoActual = BucarNodoTXT(HijoPosicion, Valor);
+                T[] ValoresT = Valor.VectorTextoAClases(NodoActual.Valores);
+                for (int i = 0; i < Grado; i++)
+                    if (ValoresT[i] != null && Convert.ToInt32(Delegado.DynamicInvoke(Valor, ValoresT[i])) == -1)
+                    {
+                        HijoPosicion = NodoActual.Hijos[i];
+                        i = Grado;
+                    }
+                    else if (ValoresT[i] != null && Convert.ToInt32(Delegado.DynamicInvoke(Valor, ValoresT[i])) == 0)
+                    {
+                        Eliminar(Valor, Delegado, i);
+                        i = Grado;
+                        Eliminado = false;
+                        Encontrado = true;
+                    }
+                    else if (ValoresT[i] == null && Convert.ToInt32(Delegado.DynamicInvoke(Valor, ValoresT[i - 1])) == 1)
+                    {
+                        HijoPosicion = NodoActual.Hijos[i];
+                        i = Grado;
+                    }
+                    else if (i == Grado - 1 && Convert.ToInt32(Delegado.DynamicInvoke(Valor, ValoresT[i])) == 0 && NodoActual.HijosVacios())
+                        Eliminado = false;
+            } while (Eliminado);
+            Archivo.Close();
+            return Encontrado;
+        }
+        void Eliminar(T Valor, Delegate Delegado, int PosicionHijo)
+        {
+            bool Eliminado = true;
+            int UnderFlow = Convert.ToInt32((Grado / 2) + 0.5) - 1;
+            NuevaRaiz = BucarNodoTXT(NodoActual.Padre, Valor);
+            T[] ValoresPadre = Valor.VectorTextoAClases(NuevaRaiz.Valores);
+            T[] ValoresActual = Valor.VectorTextoAClases(NodoActual.Valores);
+            do
+            {
+                if (ValoresActual[UnderFlow] != null && NodoActual.HijosVacios())
+                {
+                    for (int i = 0; i < Grado; i++)
+                        if (ValoresActual[i] != null && Convert.ToInt32(Delegado.DynamicInvoke(Valor, ValoresActual[i])) == 0)
+                        {
+                            NodoActual.Valores[i] = ValorVacio;
+                            for (int f = i; f < Grado - 1; f++)
+                                if (NodoActual.Valores[f].Trim() == "-1" && f != Grado - 2)
+                                {
+                                    NodoActual.Valores[f] = NodoActual.Valores[i + 1];
+                                    NodoActual.Valores[f + 1] = ValorVacio;
+                                }
+                            EscribirNodoTXT(NodoActual);
+                            i = Grado;
+                        }
+                    Eliminado = false;
+                }
+                else if (ValoresActual[UnderFlow] != null && NodoActual.HijosVacios())
+                {
+                    if (PosicionHijo == 0)
+                    {
+                        NodoHermano2 = BucarNodoTXT(NodoActual.Hijos[PosicionHijo + 1], Valor);
+                        if (NodoHermano2.Valores[UnderFlow] != ValorVacio)
+                        {
+
+                        }
+                    }
+                    else if (Posicion == Grado - 1)
+                    {
+                        NodoHermano = BucarNodoTXT(NodoActual.Hijos[PosicionHijo - 1], Valor);
+                        if (NodoHermano.Valores[UnderFlow] != ValorVacio)
+                        {
+
+                        }
+                    }
+                    else
+                    {
+                        NodoHermano = BucarNodoTXT(NodoActual.Hijos[PosicionHijo - 1], Valor);
+                        NodoHermano2 = BucarNodoTXT(NodoActual.Hijos[PosicionHijo + 1], Valor);
+                        if (NodoHermano.Valores[UnderFlow] != ValorVacio)
+                        {
+
+                        }
+                        else if (NodoHermano2.Valores[UnderFlow] != ValorVacio)
+                        {
+
+                        }
+                    }
+
+
+                }
+                else if (ValoresActual[UnderFlow] != null && !NodoActual.HijosVacios())
+                {
+                    Eliminado = false;
+                }
+            } while (Eliminado);
+        }
+
+
+        public List<string> Recorrido(int Recorrido, T Valor)
+        {
+            Archivo = new FileStream(RutaArbol, FileMode.Open);
+            List<string> Lista = new List<string>();
+            if (Recorrido == 1)
+            {
+                InOrder(Raiz, 0, Lista, Valor);
+            }
+            else if (Recorrido == 2)
+            {
+                PostOrder(Raiz, 0, Lista, Valor);
+            }
+            else if (Recorrido == 3)
+            {
+                PreOrder(Raiz, 0, Lista, Valor);
+            }
+            Archivo.Close();
+            return Lista;
+        }
+
+        public void InOrder(int Posicion, int Num, List<string> Lista, T Valor)
+        {
+            Nodo NodoActual = BucarNodoTXT(Posicion, Valor);
+            for (int i = 0; i < NodoActual.Valores.Length; i++)
+            {
+                if (NodoActual.Hijos[i] != -1)
+                {
+                    InOrder(NodoActual.Hijos[i], 0, Lista, Valor);
+                    if (NodoActual.Valores[i] != null)
+                    {
+                        if (NodoActual.Valores[i] != "                                                                                                                           -1")
+                        {
+                            Lista.Add(NodoActual.Valores[i]);
+                        }
+
+                    }
+                }
+                else
+                {
+                    if (NodoActual.Valores[i] != null)
+                    {
+                        if (NodoActual.Valores[i] != "                                                                                                                           -1")
+                        {
+                            Lista.Add(NodoActual.Valores[i]);
+                        }
+
+                    }
+                }
+            }
+        }
+        public void PostOrder(int Posicion, int Num, List<string> Lista, T Valor)
+        {
+            Nodo NodoActual = BucarNodoTXT(Posicion, Valor);
+            for (int i = 0; i < NodoActual.Valores.Length; i++)
+            {
+                if (NodoActual.Valores.Length - 1 == i)
+                {
+                    Lista = InsercionRecorrido(Lista, NodoActual);
+                }
+                else
+                {
+                    if (NodoActual.Hijos[i] != -1)
+                    {
+                        PostOrder(NodoActual.Hijos[i], Num, Lista, Valor);
+                    }
+                }
+            }
+        }
+
+        List<string> InsercionRecorrido(List<string> Lista, Nodo NodoActual)
+        {
+            for (int i = 0; i < NodoActual.Valores.Length; i++)
+            {
+                if (NodoActual.Valores[i] != null)
+                {
+                    if (NodoActual.Valores[i] != "                                                                                                                           -1")
+                    {
+                        Lista.Add(NodoActual.Valores[i]);
+                    }
+                }
+            }
+            return Lista;
+        }
+
+        public void PreOrder(int Posicion, int Num, List<String> Lista, T Valor)
+        {
+            Nodo NodoActual = BucarNodoTXT(Posicion, Valor);
+            for (int i = 0; i < NodoActual.Valores.Length; i++)
+            {
+                if (i == 0)
+                {
+                    Lista = InsercionRecorrido(Lista, NodoActual);
+                }
+                else
+                {
+                    if (NodoActual.Hijos[i] != -1)
+                    {
+                        PreOrder(NodoActual.Hijos[i], Num, Lista, Valor);
+                    }
+                }
+            }
+
         }
     }
 }
