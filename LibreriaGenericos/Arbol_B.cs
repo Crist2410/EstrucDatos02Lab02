@@ -257,9 +257,7 @@ namespace LibreriaGenericos
             }
             return Hijos;
         }
-<<<<<<< HEAD
         #endregion
-=======
         public bool Delete(T Valor, Delegate Delegado)
         {
             Archivo = new FileStream(RutaArbol, FileMode.Open);
@@ -465,6 +463,5 @@ namespace LibreriaGenericos
             }
 
         }
->>>>>>> 070cae63f1b3bc9b3c48a276d19302c27457e429
     }
 }
